@@ -1,0 +1,163 @@
+[
+    {
+        "outputFile": "/Users/test/androidworkspace/accessibilityDemo/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 54,
+                    "endOffset": 105
+                },
+                "from": {
+                    "file": "/Users/test/androidworkspace/accessibilityDemo/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 19,
+                        "endColumn": 54,
+                        "endOffset": 69
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 110,
+                    "endColumn": 65,
+                    "endOffset": 171
+                },
+                "from": {
+                    "file": "/Users/test/androidworkspace/accessibilityDemo/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 292,
+                        "endColumn": 65,
+                        "endOffset": 353
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 176,
+                    "endColumn": 53,
+                    "endOffset": 225
+                },
+                "from": {
+                    "file": "/Users/test/androidworkspace/accessibilityDemo/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 140,
+                        "endColumn": 53,
+                        "endOffset": 189
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 230,
+                    "endColumn": 53,
+                    "endOffset": 279
+                },
+                "from": {
+                    "file": "/Users/test/androidworkspace/accessibilityDemo/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 195,
+                        "endColumn": 53,
+                        "endOffset": 244
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 284,
+                    "endColumn": 40,
+                    "endOffset": 320
+                },
+                "from": {
+                    "file": "/Users/test/androidworkspace/accessibilityDemo/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 250,
+                        "endColumn": 40,
+                        "endOffset": 286
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 325,
+                    "endColumn": 63,
+                    "endOffset": 384
+                },
+                "from": {
+                    "file": "/Users/test/androidworkspace/accessibilityDemo/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 75,
+                        "endColumn": 63,
+                        "endOffset": 134
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 389,
+                    "endLine": 14,
+                    "endColumn": 12,
+                    "endOffset": 675
+                },
+                "from": {
+                    "file": "/Users/test/androidworkspace/accessibilityDemo/app/src/main/res/values/styles.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 191,
+                        "endLine": 12,
+                        "endColumn": 12,
+                        "endOffset": 481
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 15,
+                    "startColumn": 4,
+                    "startOffset": 680,
+                    "endLine": 17,
+                    "endColumn": 12,
+                    "endOffset": 835
+                },
+                "from": {
+                    "file": "/Users/test/androidworkspace/accessibilityDemo/app/src/main/res/values/styles.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 4,
+                        "startOffset": 522,
+                        "endLine": 17,
+                        "endColumn": 12,
+                        "endOffset": 679
+                    }
+                }
+            }
+        ]
+    }
+]

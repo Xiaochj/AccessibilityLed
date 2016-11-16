@@ -36,7 +36,6 @@ public class WindowAccessibilitySeivice extends AccessibilityService {
 		super.onServiceConnected();
 	}
 
-	//212416
 	//后台推送点开微信:typenotification-typestate-typescrolled-typecontent-typefocused-typecontent...
 	//开着微信支付页面:typecontent...-typescrolled-typecontent...
 	//开着微信其他页面:typecontent-typenotification-typecontent...-typestate-typecontent...-typescrolled-typefocused-typecontent...
@@ -47,10 +46,10 @@ public class WindowAccessibilitySeivice extends AccessibilityService {
 		if (eventType == AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED) {//当微信在后台运行,一个push推送过来,调通知的event
 			setNotifyChanged(event);
 		} else if (eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {//打开微信之后,调用窗口样式改变的event
-			if(isNotify()) {
+//			if(isNotify()) {
 				getSaleNumber(event);
-			}
-		}else if (eventType == AccessibilityEvent.TYPE_VIEW_SCROLLED) {//在支付card页面停留,页面滑动,出现了新的支付card
+//			}
+		}/*else if (eventType == AccessibilityEvent.TYPE_VIEW_SCROLLED) {//在支付card页面停留,页面滑动,出现了新的支付card
 			if(!isNotify()) {
 				getSaleNumber(event);
 			}
@@ -58,6 +57,12 @@ public class WindowAccessibilitySeivice extends AccessibilityService {
 			if(isNotify()){
 				setNotify(false);
 			}
+		}*/
+		else if(eventType == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED){
+//			if(!isNotify()){
+				performGlobalAction(GLOBAL_ACTION_BACK);
+//				setNotify(false);
+//			}
 		}
 	}
 
@@ -90,7 +95,6 @@ public class WindowAccessibilitySeivice extends AccessibilityService {
 	public void getSaleNumber(AccessibilityEvent event){
 		//如果是微信的launcher页面且是打开微信
 		if(event.getPackageName().toString().equalsIgnoreCase(getString(R.string.package_wx))) {
-			wakeAndUnlock();
 			List<AccessibilityNodeInfo> nodeInfos = getRootInActiveWindow().findAccessibilityNodeInfosByText("￥");
 			int size = nodeInfos.size();
 			if (size == 0)
@@ -107,7 +111,7 @@ public class WindowAccessibilitySeivice extends AccessibilityService {
 
 	private void performGlobal(List<AccessibilityNodeInfo> nodeInfos,int index){
 		Utils.LogUtil("d", TAG, nodeInfos.get(index).getText().toString());
-//		performGlobalAction(GLOBAL_ACTION_BACK);
+		performGlobalAction(GLOBAL_ACTION_BACK);
 	}
 
 	/**

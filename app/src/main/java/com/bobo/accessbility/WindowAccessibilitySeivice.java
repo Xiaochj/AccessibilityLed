@@ -10,7 +10,7 @@ import android.os.PowerManager;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
-import com.example.accessibilitydemo.R;
+import com.xiaochj.led.R;
 
 import java.util.List;
 
@@ -60,6 +60,7 @@ public class WindowAccessibilitySeivice extends AccessibilityService {
 		}*/
 		else if(eventType == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED){
 //			if(!isNotify()){
+			if(!event.getPackageName().toString().equalsIgnoreCase("android.intent.category.launcher"))
 				performGlobalAction(GLOBAL_ACTION_BACK);
 //				setNotify(false);
 //			}

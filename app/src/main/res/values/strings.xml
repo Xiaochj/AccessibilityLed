@@ -1,7 +1,12 @@
 <resources>
 
-    <string name="app_name">accessibilityDemo</string>
-    <string name="testaccessibility">accessibilityDemo</string>
+    <string name="app_name">LedDemo</string>
+    <string name="descritpions">使用LedDemo监控支付消息,需要用户开启辅助功能。开启后,LedDemo将会自动打开微信支付详细页面,并读取支付金额信息。
+        \n\n注意:1、请确保微信新消息提醒状态设置为"接收新消息通知"、"通知显示消息详情"。
+        \n\n2、开启LedDemo辅助功能,微信将会被锁定,关闭辅助功能释放锁定。
+        \n\n3、开启后,系统会弹出例行的警告。LedDemo郑重承诺不会通过此服务收集任何用户隐私,请放心使用。</string>
+    <string name="android_launcher">android.intent.category.launcher</string>
+
     <string name="notify_wx">微信支付: 面对面收款到账通知</string>
     <string name="package_wx">com.tencent.mm</string>
     <string name="sale_wx">收款金额</string>

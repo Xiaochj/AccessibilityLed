@@ -2,40 +2,67 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="/Users/test/androidworkspace/accessibilityDemo/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Users/test/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.0.0/support-annotations-24.0.0.jar"
+        jumboMode="false"
         optimize="true"
         revision="24.0.2"
-        sha1="5d72cb18b1cbb81c63bb86644d4ec5a5760ce07f">
-        <dex dex="/Users/test/androidworkspace/accessibilityDemo/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_16557fb5ae6442a5690892c60731a38ac3b901fc/classes.dex" />
+        sha1="2943c74db6d4346ab8c6531adac91fa05c137c40">
+        <dex dex="/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/pre-dexed/release/support-annotations-24.0.0_3fd836ee6bef80cbad774a8e1e42fd073cba32a0.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/Users/test/androidworkspace/accessibilityDemo/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="9d953539e57bbdffe36f15efd0397a28e3793aac">
-        <dex dex="/Users/test/androidworkspace/accessibilityDemo/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_de547ddcb8a205810ef401a4f36e21c0d422bc97/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/test/androidworkspace/accessibilityDemo/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/libs/internal_impl-24.0.0.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/libs/internal_impl-24.0.0.jar"
+        jumboMode="false"
         optimize="true"
         revision="24.0.2"
         sha1="fcaf463e10e69c1923ccf1edeba3b4196d239e00">
-        <dex dex="/Users/test/androidworkspace/accessibilityDemo/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.0.0_5266cc627741636c03b0947d1f39eb90fedbca77/classes.dex" />
+        <dex dex="/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/pre-dexed/release/internal_impl-24.0.0_a0eb43e58568b22a758f5f00fa4de2a52aaa008a.jar" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/test/androidworkspace/accessibilityDemo/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/classes.jar"
+        jar="/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="2f7e6e2dad1bccaf68a8820820adc6c0d5b96d37">
-        <dex dex="/Users/test/androidworkspace/accessibilityDemo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.0.0_214541d901a0843409a1b3e7d18e5dcbff631a28/classes.dex" />
+        <dex dex="/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.0.0_a39ee5b850ad6480a289027a759d8a48e189f801/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/libs/internal_impl-24.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="fcaf463e10e69c1923ccf1edeba3b4196d239e00">
+        <dex dex="/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.0.0_a0eb43e58568b22a758f5f00fa4de2a52aaa008a/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="2f7e6e2dad1bccaf68a8820820adc6c0d5b96d37">
+        <dex dex="/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/pre-dexed/release/com.android.support-support-v4-24.0.0_a39ee5b850ad6480a289027a759d8a48e189f801.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="ee4a8eeb350519fe6cfdc26c23f64a67100dd776">
+        <dex dex="/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_be8f6cc139a57e0fa2d43720694f156f3ba94574/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="a42111c99baae63af9122129a9e6a1373c49bf34">
+        <dex dex="/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_697275bdfe6cad1f3ab1aaaf18dd4792380c6d9a/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -44,7 +71,7 @@
         optimize="true"
         revision="24.0.2"
         sha1="2943c74db6d4346ab8c6531adac91fa05c137c40">
-        <dex dex="/Users/test/androidworkspace/accessibilityDemo/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.0.0_3fd836ee6bef80cbad774a8e1e42fd073cba32a0/classes.dex" />
+        <dex dex="/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.0.0_3fd836ee6bef80cbad774a8e1e42fd073cba32a0/classes.dex" />
     </item>
 
 </items>

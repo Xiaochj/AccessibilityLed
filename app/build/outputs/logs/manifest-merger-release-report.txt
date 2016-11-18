@@ -1,0 +1,71 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:1:1-41:12
+	package
+		ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:2:5-30
+		INJECTED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml
+	android:versionName
+		ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:4:5-30
+		INJECTED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml
+	android:versionCode
+		ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:3:5-28
+		INJECTED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:1:11-69
+uses-permission#android.permission.WAKE_LOCK
+ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:6:5-67
+	android:name
+		ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:6:22-65
+uses-permission#android.permission.DISABLE_KEYGUARD
+ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:7:5-74
+	android:name
+		ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:7:22-72
+uses-sdk
+ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:9:5-11:41
+MERGED from [com.android.support:support-v4:24.0.0] /Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/AndroidManifest.xml:21:5-23:54
+	tools:overrideLibrary
+		ADDED from [com.android.support:support-v4:24.0.0] /Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/AndroidManifest.xml:23:9-51
+	android:targetSdkVersion
+		ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:11:9-38
+		INJECTED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:10:9-35
+		INJECTED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml
+application
+ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:13:5-39:19
+MERGED from [com.android.support:support-v4:24.0.0] /Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/AndroidManifest.xml:25:5-20
+	android:label
+		ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:16:9-41
+	android:allowBackup
+		ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:14:9-35
+	android:icon
+		ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:15:9-45
+	android:theme
+		ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:17:9-40
+service#com.xiaochj.accessbility.LedAccessibilityService
+ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:26:9-38:19
+	android:label
+		ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:29:13-45
+	android:permission
+		ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:30:13-79
+	android:description
+		ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:28:13-55
+	android:name
+		ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:27:13-76
+intent-filter#android.accessibilityservice.AccessibilityService
+ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:31:13-33:29
+action#android.accessibilityservice.AccessibilityService
+ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:32:17-92
+	android:name
+		ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:32:25-89
+meta-data#android.accessibilityservice
+ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:35:13-37:57
+	android:resource
+		ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:37:17-54
+	android:name
+		ADDED from /Users/test/androidworkspace/AccessibilityLed/app/src/main/AndroidManifest.xml:36:17-60

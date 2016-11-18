@@ -1,0 +1,7 @@
+#Fri Nov 18 11:11:55 CST 2016
+base.0=/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_be8f6cc139a57e0fa2d43720694f156f3ba94574
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_697275bdfe6cad1f3ab1aaaf18dd4792380c6d9a/classes.dex
+base.1=/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_697275bdfe6cad1f3ab1aaaf18dd4792380c6d9a
+file.0=/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_be8f6cc139a57e0fa2d43720694f156f3ba94574/classes.dex

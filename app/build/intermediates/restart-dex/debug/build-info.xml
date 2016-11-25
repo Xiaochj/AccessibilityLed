@@ -4,7 +4,7 @@
     density="xxhdpi"
     format="8"
     plugin-version="2.2.0"
-    timestamp="52118365880404"
+    timestamp="82679527886801"
     token="-2470169336936716266"
     verifier="FULL_BUILD_REQUESTED" >
 
@@ -16,17 +16,17 @@
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="36" />
+        duration="10" />
     <task
         name="verifier"
-        duration="4" />
+        duration="0" />
 
     <artifact
         location="/Users/test/androidworkspace/AccessibilityLed/app/build/outputs/apk/app-debug.apk"
         type="MAIN" />
 
     <build
-        timestamp="52118365880404"
+        timestamp="82679527886801"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="/Users/test/androidworkspace/AccessibilityLed/app/build/outputs/apk/app-debug.apk"

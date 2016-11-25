@@ -2,24 +2,6 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="/Users/test/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.0.0/support-annotations-24.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="2943c74db6d4346ab8c6531adac91fa05c137c40">
-        <dex dex="/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/pre-dexed/release/support-annotations-24.0.0_3fd836ee6bef80cbad774a8e1e42fd073cba32a0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/libs/internal_impl-24.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="fcaf463e10e69c1923ccf1edeba3b4196d239e00">
-        <dex dex="/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/pre-dexed/release/internal_impl-24.0.0_a0eb43e58568b22a758f5f00fa4de2a52aaa008a.jar" />
-    </item>
-    <item
         is-multidex="true"
         jar="/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/classes.jar"
         jumboMode="true"
@@ -38,21 +20,12 @@
         <dex dex="/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.0.0_a0eb43e58568b22a758f5f00fa4de2a52aaa008a/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="2f7e6e2dad1bccaf68a8820820adc6c0d5b96d37">
-        <dex dex="/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/pre-dexed/release/com.android.support-support-v4-24.0.0_a39ee5b850ad6480a289027a759d8a48e189f801.jar" />
-    </item>
-    <item
         is-multidex="true"
         jar="/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="ee4a8eeb350519fe6cfdc26c23f64a67100dd776">
+        sha1="3c3211d56f0beec9eacb75f4c6135ff3371cec0e">
         <dex dex="/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_be8f6cc139a57e0fa2d43720694f156f3ba94574/classes.dex" />
     </item>
     <item
@@ -61,7 +34,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="a42111c99baae63af9122129a9e6a1373c49bf34">
+        sha1="cc0cf3757f506dd44e4a7a972c2ce9524eff5fcf">
         <dex dex="/Users/test/androidworkspace/AccessibilityLed/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_697275bdfe6cad1f3ab1aaaf18dd4792380c6d9a/classes.dex" />
     </item>
     <item

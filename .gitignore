@@ -1,0 +1,6 @@
+/build
+/.idea
+/.gradle
+AccessibilityLed/.gradle/
+AccessibilityLed/.gradle/2.14.1/
+AccessibilityLed/.gradle/2.14.1/taskArtifacts

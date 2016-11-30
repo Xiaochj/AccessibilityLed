@@ -15,9 +15,9 @@
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
-                        "startOffset": 339,
+                        "startOffset": 343,
                         "endColumn": 77,
-                        "endOffset": 412
+                        "endOffset": 416
                     }
                 }
             },
@@ -45,17 +45,17 @@
                     "startLine": 4,
                     "startColumn": 4,
                     "startOffset": 178,
-                    "endColumn": 51,
-                    "endOffset": 225
+                    "endColumn": 63,
+                    "endOffset": 237
                 },
                 "from": {
                     "file": "/Users/test/androidworkspace/AccessibilityLed/app/src/main/res/values/strings.xml",
                     "position": {
-                        "startLine": 10,
+                        "startLine": 9,
                         "startColumn": 4,
-                        "startOffset": 489,
-                        "endColumn": 51,
-                        "endOffset": 536
+                        "startOffset": 428,
+                        "endColumn": 63,
+                        "endOffset": 487
                     }
                 }
             },
@@ -63,18 +63,18 @@
                 "to": {
                     "startLine": 5,
                     "startColumn": 4,
-                    "startOffset": 230,
-                    "endColumn": 63,
-                    "endOffset": 289
+                    "startOffset": 242,
+                    "endColumn": 43,
+                    "endOffset": 281
                 },
                 "from": {
                     "file": "/Users/test/androidworkspace/AccessibilityLed/app/src/main/res/values/strings.xml",
                     "position": {
-                        "startLine": 9,
+                        "startLine": 11,
                         "startColumn": 4,
-                        "startOffset": 424,
-                        "endColumn": 63,
-                        "endOffset": 483
+                        "startOffset": 550,
+                        "endColumn": 43,
+                        "endOffset": 589
                     }
                 }
             },
@@ -82,18 +82,18 @@
                 "to": {
                     "startLine": 6,
                     "startColumn": 4,
-                    "startOffset": 294,
-                    "endColumn": 43,
-                    "endOffset": 333
+                    "startOffset": 286,
+                    "endColumn": 55,
+                    "endOffset": 337
                 },
                 "from": {
                     "file": "/Users/test/androidworkspace/AccessibilityLed/app/src/main/res/values/strings.xml",
                     "position": {
-                        "startLine": 12,
+                        "startLine": 10,
                         "startColumn": 4,
-                        "startOffset": 599,
-                        "endColumn": 43,
-                        "endOffset": 638
+                        "startOffset": 493,
+                        "endColumn": 55,
+                        "endOffset": 544
                     }
                 }
             },
@@ -101,18 +101,18 @@
                 "to": {
                     "startLine": 7,
                     "startColumn": 4,
-                    "startOffset": 338,
-                    "endColumn": 55,
-                    "endOffset": 389
+                    "startOffset": 342,
+                    "endColumn": 65,
+                    "endOffset": 403
                 },
                 "from": {
                     "file": "/Users/test/androidworkspace/AccessibilityLed/app/src/main/res/values/strings.xml",
                     "position": {
-                        "startLine": 11,
+                        "startLine": 16,
                         "startColumn": 4,
-                        "startOffset": 542,
-                        "endColumn": 55,
-                        "endOffset": 593
+                        "startOffset": 749,
+                        "endColumn": 65,
+                        "endOffset": 810
                     }
                 }
             },
@@ -120,29 +120,10 @@
                 "to": {
                     "startLine": 8,
                     "startColumn": 4,
-                    "startOffset": 394,
-                    "endColumn": 65,
-                    "endOffset": 455
-                },
-                "from": {
-                    "file": "/Users/test/androidworkspace/AccessibilityLed/app/src/main/res/values/strings.xml",
-                    "position": {
-                        "startLine": 17,
-                        "startColumn": 4,
-                        "startOffset": 798,
-                        "endColumn": 65,
-                        "endOffset": 859
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 9,
-                    "startColumn": 4,
-                    "startOffset": 460,
-                    "endLine": 12,
+                    "startOffset": 408,
+                    "endLine": 11,
                     "endColumn": 71,
-                    "endOffset": 725
+                    "endOffset": 677
                 },
                 "from": {
                     "file": "/Users/test/androidworkspace/AccessibilityLed/app/src/main/res/values/strings.xml",
@@ -152,7 +133,26 @@
                         "startOffset": 65,
                         "endLine": 6,
                         "endColumn": 71,
-                        "endOffset": 333
+                        "endOffset": 337
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 682,
+                    "endColumn": 53,
+                    "endOffset": 731
+                },
+                "from": {
+                    "file": "/Users/test/androidworkspace/AccessibilityLed/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 4,
+                        "startOffset": 597,
+                        "endColumn": 53,
+                        "endOffset": 646
                     }
                 }
             },
@@ -160,18 +160,18 @@
                 "to": {
                     "startLine": 13,
                     "startColumn": 4,
-                    "startOffset": 730,
+                    "startOffset": 736,
                     "endColumn": 53,
-                    "endOffset": 779
+                    "endOffset": 785
                 },
                 "from": {
                     "file": "/Users/test/androidworkspace/AccessibilityLed/app/src/main/res/values/strings.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
-                        "startOffset": 646,
+                        "startOffset": 652,
                         "endColumn": 53,
-                        "endOffset": 695
+                        "endOffset": 701
                     }
                 }
             },
@@ -179,18 +179,18 @@
                 "to": {
                     "startLine": 14,
                     "startColumn": 4,
-                    "startOffset": 784,
-                    "endColumn": 53,
-                    "endOffset": 833
+                    "startOffset": 790,
+                    "endColumn": 40,
+                    "endOffset": 826
                 },
                 "from": {
                     "file": "/Users/test/androidworkspace/AccessibilityLed/app/src/main/res/values/strings.xml",
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
-                        "startOffset": 701,
-                        "endColumn": 53,
-                        "endOffset": 750
+                        "startOffset": 707,
+                        "endColumn": 40,
+                        "endOffset": 743
                     }
                 }
             },
@@ -198,29 +198,10 @@
                 "to": {
                     "startLine": 15,
                     "startColumn": 4,
-                    "startOffset": 838,
-                    "endColumn": 40,
-                    "endOffset": 874
-                },
-                "from": {
-                    "file": "/Users/test/androidworkspace/AccessibilityLed/app/src/main/res/values/strings.xml",
-                    "position": {
-                        "startLine": 16,
-                        "startColumn": 4,
-                        "startOffset": 756,
-                        "endColumn": 40,
-                        "endOffset": 792
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 16,
-                    "startColumn": 4,
-                    "startOffset": 879,
-                    "endLine": 22,
+                    "startOffset": 831,
+                    "endLine": 21,
                     "endColumn": 12,
-                    "endOffset": 1165
+                    "endOffset": 1117
                 },
                 "from": {
                     "file": "/Users/test/androidworkspace/AccessibilityLed/app/src/main/res/values/styles.xml",
@@ -236,12 +217,12 @@
             },
             {
                 "to": {
-                    "startLine": 23,
+                    "startLine": 22,
                     "startColumn": 4,
-                    "startOffset": 1170,
-                    "endLine": 25,
+                    "startOffset": 1122,
+                    "endLine": 24,
                     "endColumn": 12,
-                    "endOffset": 1325
+                    "endOffset": 1277
                 },
                 "from": {
                     "file": "/Users/test/androidworkspace/AccessibilityLed/app/src/main/res/values/styles.xml",

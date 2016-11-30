@@ -16,15 +16,14 @@ public final class R {
     public static final class string {
         public static final int android_launcher=0x7f050000;
         public static final int app_name=0x7f050001;
-        public static final int bluetooth_notopen=0x7f050002;
-        public static final int bluetooth_notsupport=0x7f050003;
-        public static final int bluetooth_ok=0x7f050004;
-        public static final int bluetooth_tip=0x7f050005;
-        public static final int contentdescription_wx=0x7f050006;
-        public static final int descritpions=0x7f050007;
-        public static final int notify_wx=0x7f050008;
-        public static final int package_wx=0x7f050009;
-        public static final int sale_wx=0x7f05000a;
+        public static final int bluetooth_notsupport=0x7f050002;
+        public static final int bluetooth_ok=0x7f050003;
+        public static final int bluetooth_tip=0x7f050004;
+        public static final int contentdescription_wx=0x7f050005;
+        public static final int descritpions=0x7f050006;
+        public static final int notify_wx=0x7f050007;
+        public static final int package_wx=0x7f050008;
+        public static final int sale_wx=0x7f050009;
     }
     public static final class style {
         /**  API 11 theme customizations can go here. 

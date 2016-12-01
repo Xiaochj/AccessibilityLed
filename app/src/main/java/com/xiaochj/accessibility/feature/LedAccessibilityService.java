@@ -15,14 +15,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.PowerManager;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.EditText;
 
-import com.xiaochj.accessibility.util.Utils;
 import com.xiaochj.accessibility.impl.OnBtRegisterListener;
 import com.xiaochj.accessibility.impl.OnLedAccessibilityListener;
+import com.xiaochj.accessibility.util.Utils;
 import com.xiaochj.led.R;
 
 import java.util.List;
@@ -30,6 +32,7 @@ import java.util.List;
 public class LedAccessibilityService extends AccessibilityService implements OnLedAccessibilityListener {
 
 	private static final String TAG = "accessibilityservice";
+	private static final String COLON = ":";
 	private KeyguardManager km;
 	private KeyguardManager.KeyguardLock kl;
 	private PowerManager pm;
@@ -147,7 +150,7 @@ public class LedAccessibilityService extends AccessibilityService implements OnL
 
 	@Override
 	public void onBtNotSupportListener() {
-		Utils.ToastUtil(context,context.getString(R.string.bluetooth_notsupport));
+		Utils.ToastUtil(context,context.getString(R.string.bluetooth_not_support));
 	}
 
 	@Override
@@ -173,24 +176,33 @@ public class LedAccessibilityService extends AccessibilityService implements OnL
 	public void onWriteDialogMac() {
 		//如果是第一次打开app,那就弹出输入框,键入led的蓝牙地址
 		if(Utils.getSpFirstApp(context)) {
-			final EditText et = new EditText(context);
-			et.setText("CC:A2:23:D6:E0:16");
+			View etView = LayoutInflater.from(context).inflate(R.layout.edit_addr_layout,null);
+			etView.findViewById(R.id.six).findViewById(R.id.colon).setVisibility(View.GONE);
+			final EditText et1 = (EditText)etView.findViewById(R.id.one).findViewById(R.id.edit);
+			final EditText et2 = (EditText)etView.findViewById(R.id.two).findViewById(R.id.edit);
+			final EditText et3 = (EditText)etView.findViewById(R.id.three).findViewById(R.id.edit);
+			final EditText et4 = (EditText)etView.findViewById(R.id.four).findViewById(R.id.edit);
+			final EditText et5 = (EditText)etView.findViewById(R.id.five).findViewById(R.id.edit);
+			final EditText et6 = (EditText)etView.findViewById(R.id.six).findViewById(R.id.edit);
 			AlertDialog.Builder builder = new AlertDialog.Builder(context);
-			builder.setTitle(context.getString(R.string.bluetooth_tip)).setView(et)
+			builder.setTitle(context.getString(R.string.bluetooth_tip)).setView(etView)
 					.setPositiveButton(context.getString(R.string.bluetooth_ok), new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(final DialogInterface dialog, int which) {
-							new Thread() {
-								@Override
-								public void run() {
-									String macStr = et.getText().toString().trim();
-									Utils.setSpFirstApp(context,false);//记录第一次app
-									if (!"".equals(macStr)) {
-										Utils.setSpMacAddr(context,macStr);//保存macAddr
-										btc.bluetoothOpenAndRegister(macStr);//打开和注册蓝牙
-									}
-								}
-							}.start();
+							StringBuffer sb = new StringBuffer();
+							sb.append(et1.getText().toString().trim()).append(COLON)
+									.append(et2.getText().toString().trim()).append(COLON)
+									.append(et3.getText().toString().trim()).append(COLON)
+									.append(et4.getText().toString().trim()).append(COLON)
+									.append(et5.getText().toString().trim()).append(COLON)
+									.append(et6.getText().toString().trim());
+							String macStr = sb.toString().trim();
+							if (!"".equals(macStr)) {
+								Utils.setSpFirstApp(context,false);//记录第一次app
+								Utils.setSpMacAddr(context,macStr);//保存macAddr
+								btc.bluetoothOpenAndRegister(macStr);//打开和注册蓝牙
+							}
+
 						}
 					});
 			Dialog dialog = builder.create();
@@ -201,5 +213,12 @@ public class LedAccessibilityService extends AccessibilityService implements OnL
 			if(!"".equalsIgnoreCase(Utils.getSpMacAddr(context)))
 				btc.bluetoothOpenAndRegister(Utils.getSpMacAddr(context));
 		}
+	}
+
+	@Override
+	public void onNotBltAddress() {
+		Utils.ToastUtil(context,context.getString(R.string.bluetooth_true_address));
+		Utils.setSpFirstApp(context,true);
+		Utils.setSpMacAddr(context,"");
 	}
 }

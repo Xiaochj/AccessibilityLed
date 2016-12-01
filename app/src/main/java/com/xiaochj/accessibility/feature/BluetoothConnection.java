@@ -8,11 +8,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
-import com.xiaochj.accessibility.util.Utils;
 import com.xiaochj.accessibility.impl.OnBtRegisterListener;
 import com.xiaochj.accessibility.impl.OnLedAccessibilityListener;
+import com.xiaochj.accessibility.util.Utils;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -59,35 +61,49 @@ public class BluetoothConnection implements OnBtRegisterListener {
 
     }
 
-//    private boolean isOurBondBlueTooth(){
-//        //获得已配对的远程蓝牙设备的集合
-//        Set<BluetoothDevice> devices = mBluetoothAdapter.getBondedDevices();
-//        if(devices.size()>0){
-//            for(Iterator<BluetoothDevice> it = devices.iterator(); it.hasNext();){
-//                BluetoothDevice device = (BluetoothDevice)it.next();
-//                //如果远程蓝牙设备的物理地址和我们输入的匹配
-//                if(device.getAddress().equalsIgnoreCase(macStr)){
-//                    return true;
-//                }
-//            }
-//        }
-//        return false;
-//    }
+    private boolean hasOurBondBlueTooth(){
+        //获得已配对的远程蓝牙设备的集合
+        Set<BluetoothDevice> devices = mBluetoothAdapter.getBondedDevices();
+        if(devices.size()>0){
+            for(Iterator<BluetoothDevice> it = devices.iterator(); it.hasNext();){
+                BluetoothDevice device = (BluetoothDevice)it.next();
+                //如果远程蓝牙设备的物理地址和我们输入的匹配
+                if(device.getAddress().equalsIgnoreCase(macStr)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     public void bluetoothOpenAndRegister(String addr){
+        //检测是不是标准的蓝牙地址
+        if(!mBluetoothAdapter.checkBluetoothAddress(addr)){
+            //不是的话,就恢复初始化状态(主要sp存储的数据)
+            onListener.onNotBltAddress();
+            //重新走一遍,输入地址
+            onListener.onWriteDialogMac();
+            return;
+        }
         this.macStr = addr;
+        //注册蓝牙回调广播
+        onListener.registerBtReceiver(receiver,this);
         if(!mBluetoothAdapter.isEnabled()){
             //open bluetooth
             BluetoothConnection.this.onListener.onBtNotOpenListener();
+        }else {
+            //search remote bluetooth
+            searchBlueTooth();
         }
-        //注册蓝牙回调广播
-        onListener.registerBtReceiver(receiver,this);
-        //search remote bluetooth
-        searchBlueTooth();
     }
 
     private boolean searchBlueTooth(){
-        //如果当前发现了新的设备，则停止继续扫描，当前扫描到的新设备会通过广播推向新的逻辑
+        //如果配对列表中有了,那么直接连接
+        if(hasOurBondBlueTooth()){
+            connectLed(macStr);
+            return false;
+        }
+        //配对列表没有,如果当前发现了新的设备，则停止继续扫描，当前扫描到的新设备会通过广播推向新的逻辑
         if (mBluetoothAdapter.isDiscovering()) {
             stopDiscovery();
         }
@@ -102,16 +118,16 @@ public class BluetoothConnection implements OnBtRegisterListener {
         }
     }
 
-    public void connectLed(String macAddr){
+    public void connectLed(String macAddr) {
         mBluetoothDevice = mBluetoothAdapter.getRemoteDevice(macAddr);
-        if(mBluetoothDevice != null){
+        if (mBluetoothDevice != null) {
             try {
                 mBluetoothSocket = mBluetoothDevice.createRfcommSocketToServiceRecord(UUID_LED);
                 mBluetoothAdapter.cancelDiscovery();
             } catch (IOException e) {
                 return;
             }
-            new Thread(){
+            new Thread() {
                 @Override
                 public void run() {
                     try {
@@ -137,7 +153,10 @@ public class BluetoothConnection implements OnBtRegisterListener {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+            //启动蓝牙,action会是action.changed那么直接搜索blt
+            if(BluetoothAdapter.ACTION_STATE_CHANGED.equals(action)){
+                searchBlueTooth();
+            }else if (BluetoothDevice.ACTION_FOUND.equals(action)) {//如果是action.found,那么打开remote蓝牙列表
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 switch (device.getBondState()){
                     case BluetoothDevice.BOND_NONE:
@@ -149,6 +168,14 @@ public class BluetoothConnection implements OnBtRegisterListener {
                         BluetoothConnection.this.bondedBtListener(device,macStr);
                         break;
                 }
+            }else if(BluetoothDevice.ACTION_BOND_STATE_CHANGED.equals(action)){//如果配对,那连接
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                switch (device.getBondState()) {
+                    case BluetoothDevice.BOND_BONDED:
+                        //连接
+                        BluetoothConnection.this.bondedBtListener(device, macStr);
+                        break;
+                }
             }
         }
 
@@ -157,6 +184,8 @@ public class BluetoothConnection implements OnBtRegisterListener {
     @Override
     public void unBondBtListener(BluetoothDevice device,String addr) {
         if (device.getAddress().equalsIgnoreCase(addr)) {
+            // 搜索蓝牙设备的过程占用资源比较多，一旦找到需要连接的设备后需要及时关闭搜索
+            stopDiscovery();
             //尝试配对
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 device.createBond();
@@ -167,6 +196,9 @@ public class BluetoothConnection implements OnBtRegisterListener {
     @Override
     public void bondedBtListener(BluetoothDevice device,String addr) {
         if (device.getAddress().equalsIgnoreCase(macStr)) {
+            // 搜索蓝牙设备的过程占用资源比较多，一旦找到需要连接的设备后需要及时关闭搜索
+            stopDiscovery();
+            //连接蓝牙
             connectLed(macStr);
         }
     }

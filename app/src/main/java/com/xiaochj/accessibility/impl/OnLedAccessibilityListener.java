@@ -12,4 +12,5 @@ public interface OnLedAccessibilityListener {
     void onBtNotOpenListener();
     void onWriteDialogMac();
     void registerBtReceiver(BroadcastReceiver receiver, OnBtRegisterListener btRegisterListener);
+    void onNotBltAddress();
 }

@@ -15,6 +15,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.PowerManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -27,6 +29,7 @@ import com.xiaochj.accessibility.impl.OnLedAccessibilityListener;
 import com.xiaochj.accessibility.util.Utils;
 import com.xiaochj.led.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LedAccessibilityService extends AccessibilityService implements OnLedAccessibilityListener {
@@ -40,6 +43,7 @@ public class LedAccessibilityService extends AccessibilityService implements OnL
 	private BluetoothConnection btc;
 	private Context context;
 	private BroadcastReceiver receiver = null;
+	private List<EditText> etList = new ArrayList<EditText>();
 
 	@Override
 	protected void onServiceConnected() {
@@ -184,6 +188,12 @@ public class LedAccessibilityService extends AccessibilityService implements OnL
 			final EditText et4 = (EditText)etView.findViewById(R.id.four).findViewById(R.id.edit);
 			final EditText et5 = (EditText)etView.findViewById(R.id.five).findViewById(R.id.edit);
 			final EditText et6 = (EditText)etView.findViewById(R.id.six).findViewById(R.id.edit);
+			etList.add(et1);
+			etList.add(et2);
+			etList.add(et3);
+			etList.add(et4);
+			etList.add(et5);
+			etList.add(et6);
 			AlertDialog.Builder builder = new AlertDialog.Builder(context);
 			builder.setTitle(context.getString(R.string.bluetooth_tip)).setView(etView)
 					.setPositiveButton(context.getString(R.string.bluetooth_ok), new DialogInterface.OnClickListener() {
@@ -205,7 +215,37 @@ public class LedAccessibilityService extends AccessibilityService implements OnL
 
 						}
 					});
-			Dialog dialog = builder.create();
+			final Dialog dialog = builder.create();
+			for (int i = 0; i < etList.size(); i++) {
+				etList.get(i).addTextChangedListener(new TextWatcher() {
+					@Override
+					public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+					}
+
+					@Override
+					public void onTextChanged(CharSequence s, int start, int before, int count) {
+						if (s.length() == 2) { //限定2个字符
+							int done_input_id = dialog.getCurrentFocus().getId();
+							int next_index = -1;
+							for (int i = 0; i < etList.size(); i++) {
+								if (etList.get(i).getId() == done_input_id) {
+									next_index = i + 1;
+									break;
+								}
+							}
+							EditText next_edit = etList.get(next_index);
+							if(next_index != -1)
+								next_edit.requestFocus();
+						}
+					}
+
+					@Override
+					public void afterTextChanged(Editable s) {
+
+					}
+				});
+			}
 			dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
 			dialog.show();
 		}else{
@@ -221,4 +261,5 @@ public class LedAccessibilityService extends AccessibilityService implements OnL
 		Utils.setSpFirstApp(context,true);
 		Utils.setSpMacAddr(context,"");
 	}
+
 }

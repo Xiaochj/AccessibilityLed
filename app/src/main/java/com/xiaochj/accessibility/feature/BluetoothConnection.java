@@ -8,24 +8,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
+import com.xiaochj.accessibility.application.LedApplication;
 import com.xiaochj.accessibility.impl.OnBtRegisterListener;
 import com.xiaochj.accessibility.impl.OnLedAccessibilityListener;
 import com.xiaochj.accessibility.util.Utils;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.UUID;
 
 /**
  * Created by xiaochj on 16/11/24.
  */
 
 public class BluetoothConnection implements OnBtRegisterListener {
-    private static final String TAG = "accessibilityservice";
-
-    //设备唯一标识码
-    private static final UUID UUID_LED = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
     private static BluetoothConnection INSTANCE = null;
     private OnLedAccessibilityListener onListener;
@@ -122,7 +119,7 @@ public class BluetoothConnection implements OnBtRegisterListener {
         mBluetoothDevice = mBluetoothAdapter.getRemoteDevice(macAddr);
         if (mBluetoothDevice != null) {
             try {
-                mBluetoothSocket = mBluetoothDevice.createRfcommSocketToServiceRecord(UUID_LED);
+                mBluetoothSocket = mBluetoothDevice.createRfcommSocketToServiceRecord(LedApplication.UUID_LED);
                 mBluetoothAdapter.cancelDiscovery();
             } catch (IOException e) {
                 return;
@@ -134,16 +131,21 @@ public class BluetoothConnection implements OnBtRegisterListener {
                         mBluetoothSocket.connect();
                     } catch (IOException e) {
                         try {
-                            mBluetoothSocket.close();
-                        } catch (IOException e1) {
-                            return;
+                            Class<?> clazz = mBluetoothDevice.getClass();
+                            Class<?>[] paramTypes = new Class<?>[] {Integer.TYPE};
+                            Method m = clazz.getMethod("createRfcommSocket", paramTypes);
+                            Object[] params = new Object[] {Integer.valueOf(1)};
+                            mBluetoothSocket = (BluetoothSocket) m.invoke(mBluetoothDevice, params);
+                            mBluetoothSocket.connect();
+                        } catch (Exception e1) {
+                            Utils.LogUtil("d",LedApplication.TAG,"连接失败:"+e1.getMessage().toString());
                         }
-                        return;
+                        Utils.LogUtil("d",LedApplication.TAG,"连接失败:"+e.getMessage().toString());
                     }
                 }
             }.start();
         }
-        Utils.LogUtil("d", TAG, String.valueOf(mBluetoothSocket.isConnected()));
+//        Utils.LogUtil("d", TAG, String.valueOf(mBluetoothSocket.isConnected()));
     }
 
     /**
@@ -186,9 +188,13 @@ public class BluetoothConnection implements OnBtRegisterListener {
         if (device.getAddress().equalsIgnoreCase(addr)) {
             // 搜索蓝牙设备的过程占用资源比较多，一旦找到需要连接的设备后需要及时关闭搜索
             stopDiscovery();
-            //尝试配对
+            //尝试配对(Android api > 19 Android 4.4以上)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 device.createBond();
+            }else{
+                //跳到系统的蓝牙页面,手动配对
+                onListener.onBtNotBondListener();
+//                Utils.LogUtil("d", TAG, String.valueOf(Build.VERSION.SDK_INT));
             }
         }
     }

@@ -15,6 +15,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.PowerManager;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -38,7 +39,6 @@ import java.util.List;
 
 public class LedAccessibilityService extends AccessibilityService implements OnLedAccessibilityListener {
 
-	private static final String TAG = "accessibilityservice";
 	private static final String COLON = ":";
 	private KeyguardManager km;
 	private KeyguardManager.KeyguardLock kl;
@@ -167,6 +167,13 @@ public class LedAccessibilityService extends AccessibilityService implements OnL
 		Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
 		enableBtIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(enableBtIntent);
+	}
+
+	@Override
+	public void onBtNotBondListener() {
+		Intent intent = new Intent(Settings.ACTION_BLUETOOTH_SETTINGS);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		context.startActivity(intent);
 	}
 
 	@Override

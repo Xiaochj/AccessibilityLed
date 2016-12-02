@@ -19,10 +19,14 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewParent;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.xiaochj.accessibility.impl.OnBtRegisterListener;
 import com.xiaochj.accessibility.impl.OnLedAccessibilityListener;
@@ -43,7 +47,7 @@ public class LedAccessibilityService extends AccessibilityService implements OnL
 	private BluetoothConnection btc;
 	private Context context;
 	private BroadcastReceiver receiver = null;
-	private List<EditText> etList = new ArrayList<EditText>();
+	private List<LinearLayout> etList = new ArrayList<LinearLayout>();
 
 	@Override
 	protected void onServiceConnected() {
@@ -177,77 +181,17 @@ public class LedAccessibilityService extends AccessibilityService implements OnL
 	}
 
 	@Override
+	public void onNotBltAddress() {
+		Utils.ToastUtil(context,context.getString(R.string.bluetooth_true_address));
+		Utils.setSpFirstApp(context,true);
+		Utils.setSpMacAddr(context,"");
+	}
+
+	@Override
 	public void onWriteDialogMac() {
 		//如果是第一次打开app,那就弹出输入框,键入led的蓝牙地址
 		if(Utils.getSpFirstApp(context)) {
-			View etView = LayoutInflater.from(context).inflate(R.layout.edit_addr_layout,null);
-			etView.findViewById(R.id.six).findViewById(R.id.colon).setVisibility(View.GONE);
-			final EditText et1 = (EditText)etView.findViewById(R.id.one).findViewById(R.id.edit);
-			final EditText et2 = (EditText)etView.findViewById(R.id.two).findViewById(R.id.edit);
-			final EditText et3 = (EditText)etView.findViewById(R.id.three).findViewById(R.id.edit);
-			final EditText et4 = (EditText)etView.findViewById(R.id.four).findViewById(R.id.edit);
-			final EditText et5 = (EditText)etView.findViewById(R.id.five).findViewById(R.id.edit);
-			final EditText et6 = (EditText)etView.findViewById(R.id.six).findViewById(R.id.edit);
-			etList.add(et1);
-			etList.add(et2);
-			etList.add(et3);
-			etList.add(et4);
-			etList.add(et5);
-			etList.add(et6);
-			AlertDialog.Builder builder = new AlertDialog.Builder(context);
-			builder.setTitle(context.getString(R.string.bluetooth_tip)).setView(etView)
-					.setPositiveButton(context.getString(R.string.bluetooth_ok), new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(final DialogInterface dialog, int which) {
-							StringBuffer sb = new StringBuffer();
-							sb.append(et1.getText().toString().trim()).append(COLON)
-									.append(et2.getText().toString().trim()).append(COLON)
-									.append(et3.getText().toString().trim()).append(COLON)
-									.append(et4.getText().toString().trim()).append(COLON)
-									.append(et5.getText().toString().trim()).append(COLON)
-									.append(et6.getText().toString().trim());
-							String macStr = sb.toString().trim();
-							if (!"".equals(macStr)) {
-								Utils.setSpFirstApp(context,false);//记录第一次app
-								Utils.setSpMacAddr(context,macStr);//保存macAddr
-								btc.bluetoothOpenAndRegister(macStr);//打开和注册蓝牙
-							}
-
-						}
-					});
-			final Dialog dialog = builder.create();
-			for (int i = 0; i < etList.size(); i++) {
-				etList.get(i).addTextChangedListener(new TextWatcher() {
-					@Override
-					public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-					}
-
-					@Override
-					public void onTextChanged(CharSequence s, int start, int before, int count) {
-						if (s.length() == 2) { //限定2个字符
-							int done_input_id = dialog.getCurrentFocus().getId();
-							int next_index = -1;
-							for (int i = 0; i < etList.size(); i++) {
-								if (etList.get(i).getId() == done_input_id) {
-									next_index = i + 1;
-									break;
-								}
-							}
-							EditText next_edit = etList.get(next_index);
-							if(next_index != -1)
-								next_edit.requestFocus();
-						}
-					}
-
-					@Override
-					public void afterTextChanged(Editable s) {
-
-					}
-				});
-			}
-			dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-			dialog.show();
+			initDialogAndEditInDialog();
 		}else{
 			//如果不是第一次
 			if(!"".equalsIgnoreCase(Utils.getSpMacAddr(context)))
@@ -255,11 +199,96 @@ public class LedAccessibilityService extends AccessibilityService implements OnL
 		}
 	}
 
-	@Override
-	public void onNotBltAddress() {
-		Utils.ToastUtil(context,context.getString(R.string.bluetooth_true_address));
-		Utils.setSpFirstApp(context,true);
-		Utils.setSpMacAddr(context,"");
+	private void initDialogAndEditInDialog() {
+		View etView = LayoutInflater.from(context).inflate(R.layout.edit_addr_layout,null);
+		etView.findViewById(R.id.six).findViewById(R.id.colon).setVisibility(View.GONE);
+		final EditText et1 = (EditText)etView.findViewById(R.id.one).findViewById(R.id.edit);
+		final EditText et2 = (EditText)etView.findViewById(R.id.two).findViewById(R.id.edit);
+		final EditText et3 = (EditText)etView.findViewById(R.id.three).findViewById(R.id.edit);
+		final EditText et4 = (EditText)etView.findViewById(R.id.four).findViewById(R.id.edit);
+		final EditText et5 = (EditText)etView.findViewById(R.id.five).findViewById(R.id.edit);
+		final EditText et6 = (EditText)etView.findViewById(R.id.six).findViewById(R.id.edit);
+		etList.add((LinearLayout) etView.findViewById(R.id.one));
+		etList.add((LinearLayout) etView.findViewById(R.id.two));
+		etList.add((LinearLayout) etView.findViewById(R.id.three));
+		etList.add((LinearLayout) etView.findViewById(R.id.four));
+		etList.add((LinearLayout) etView.findViewById(R.id.five));
+		etList.add((LinearLayout) etView.findViewById(R.id.six));
+		//生成一个dialog,输入remote蓝牙地址
+		setAlertDialog(etView, et1, et2, et3, et4, et5, et6);
+	}
+
+	private void setAlertDialog(View etView, final EditText et1, final EditText et2, final EditText et3, final EditText et4, final EditText et5, final EditText et6) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(context);
+		builder.setTitle(context.getString(R.string.bluetooth_tip)).setView(etView)
+                .setPositiveButton(context.getString(R.string.bluetooth_ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(final DialogInterface dialog, int which) {
+                        StringBuffer sb = new StringBuffer();
+                        sb.append(et1.getText().toString().trim()).append(COLON)
+                                .append(et2.getText().toString().trim()).append(COLON)
+                                .append(et3.getText().toString().trim()).append(COLON)
+                                .append(et4.getText().toString().trim()).append(COLON)
+                                .append(et5.getText().toString().trim()).append(COLON)
+                                .append(et6.getText().toString().trim());
+                        String macStr = sb.toString().trim();
+                        if (!"".equals(macStr)) {
+                            Utils.setSpFirstApp(context,false);//记录第一次app
+                            Utils.setSpMacAddr(context,macStr);//保存macAddr
+                            btc.bluetoothOpenAndRegister(macStr);//打开和注册蓝牙
+                        }
+
+                    }
+                });
+		final Dialog dialog = builder.create();
+		//让每一个edittext都监听字符变化,输入了2个字符,那么光标自动聚焦到下一个edittext上
+		for (int i = 0; i < etList.size(); i++) {
+            //监听光标动作
+            setTextChangedListener(dialog, i);
+        }
+		dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+		dialog.show();
+	}
+
+	private void setTextChangedListener(final Dialog dialog, int i) {
+		((EditText)etList.get(i).findViewById(R.id.edit)).addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //限定2个字符
+                if (s.length() == 2) {
+                    //获取当前焦点的父控件
+                    ViewParent viewParent = dialog.getCurrentFocus().getParent();
+                    int nextIndex = -1;
+                    //遍历查找是哪个控件
+                    for (int i = 0; i < etList.size(); i++) {
+                        if (etList.get(i) == viewParent) {
+                            //将nexIndex加1
+                            nextIndex = i + 1;
+                            break;
+                        }
+                    }
+                    if(nextIndex != -1) {
+                        //如果nextIndex拿到的控件是edittext
+                        if(nextIndex < 6) {
+                            EditText nextEdit = (EditText) etList.get(nextIndex).findViewById(R.id.edit);
+                            //使下一个控件获得焦点
+                            nextEdit.requestFocus();
+                        }else if(nextIndex == 6){
+                            //如果到了最后一个edittext,那就拿到dialog的确认button,让其获得焦点,并隐藏软键盘
+                            Button positiveButton=((AlertDialog)dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+                            positiveButton.requestFocus();
+                            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(positiveButton.getWindowToken(), 0); //强制隐藏键盘
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
 	}
 
 }

@@ -6,11 +6,11 @@
 
     <EditText
         android:id="@+id/edit"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/ds40"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:visibility="visible"
-        android:padding="3dp"
+        android:padding="@dimen/ds3"
         android:maxLength="2"
         android:lines="1"/>
 

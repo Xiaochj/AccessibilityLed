@@ -46,7 +46,7 @@ public class BluetoothConnection implements OnBtRegisterListener {
         return INSTANCE;
     }
 
-    public void connectLed(final OnLedAccessibilityListener onListener){
+    public void initBluetooth(final OnLedAccessibilityListener onListener){
         this.onListener = onListener;
         //如果手机不支持蓝牙,直接return
         if(mBluetoothAdapter == null){

@@ -4,5 +4,5 @@
     android:accessibilityFeedbackType="feedbackGeneric"
     android:canRetrieveWindowContent="true"
     android:description="@string/descritpions"
-    android:packageNames="com.tencent.mm"
+    android:packageNames="com.tencent.mm, com.eg.android.AlipayGphone"
     android:notificationTimeout="100" />

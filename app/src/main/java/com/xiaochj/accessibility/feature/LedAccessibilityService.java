@@ -4,8 +4,6 @@ import android.accessibilityservice.AccessibilityService;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.Notification;
-import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -21,7 +19,6 @@ import android.view.View;
 import android.view.ViewParent;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
-import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,6 +43,8 @@ public class LedAccessibilityService extends AccessibilityService implements OnL
 	private Context context;
 	private BroadcastReceiver receiver = null;
 	private List<LinearLayout> etList = new ArrayList<LinearLayout>();
+	private AppForWx mAppForWx;
+	private AppForZfb mAppForZfb;
 
 	@Override
 	protected void onServiceConnected() {
@@ -53,6 +52,8 @@ public class LedAccessibilityService extends AccessibilityService implements OnL
 		context = getApplicationContext();
 		btc = BluetoothConnection.getInstance();
 		btc.initBluetooth(this);
+		mAppForWx = new AppForWx(context,this);
+		mAppForZfb = new AppForZfb(context,this);
 	}
 
 	//后台推送点开微信:typenotification-typestate-typescrolled-typecontent-typefocused-typecontent...
@@ -70,77 +71,11 @@ public class LedAccessibilityService extends AccessibilityService implements OnL
 		String pkgName = event.getPackageName().toString();
 		//wx
 		if(pkgName.equalsIgnoreCase(getString(R.string.package_wx))) {
-			if (eventType == AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED) {//一个push推送过来,调通知的event
-				setNotifyChanged(event);
-			} else if (eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {//调用窗口样式改变的event
-				getWxSaleNumber();
-			} else if (eventType == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED) {//如果没退出微信,就一直调Action_Back返回事件
-				if (!event.getPackageName().toString().equalsIgnoreCase(getString(R.string.android_launcher)))
-					performGlobalAction(GLOBAL_ACTION_BACK);
-			}
+			mAppForWx.setAccessibilityEvent(eventType,event);
 			//zfb
 		}else if(pkgName.equalsIgnoreCase(getString(R.string.package_zfb))){
-			if (eventType == AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED) {//一个push推送过来,调通知的event
-				setNotifyChanged(event);
-			}
+			mAppForZfb.setAccessibilityEvent(eventType,event);
 		}
-	}
-
-	public void setNotifyChanged(AccessibilityEvent event){
-		List<CharSequence> texts = event.getText();
-		if(!texts.isEmpty()) {
-			for (CharSequence text : texts) {
-				String notifyStr = text.toString();
-				//当微信或支付宝在后台运行
-				if (notifyStr.contains(getString(R.string.notify_wx))){
-					notifyChanged(event);
-				}else if(notifyStr.contains(getString(R.string.notify_zfb))){
-					//字符串截取,中间的金额部分
-					String[] moneyStrList1 = notifyStr.split(getString(R.string.kuan_zfb));
-					String[] moneyStrList2 = moneyStrList1[1].split(getString(R.string.yuan_zfb));
-					String moneyStr = moneyStrList2[0];
-					Utils.ToastUtil(context,"zfb:"+moneyStr);
-				}
-			}
-		}
-	}
-
-	private void notifyChanged(AccessibilityEvent event) {
-		if(event.getParcelableData() != null && event.getParcelableData() instanceof Notification){
-            //唤醒解锁屏幕
-            Utils.wakeAndUnlock(context);
-            //获取notification序列化数据
-            Notification notify = (Notification)event.getParcelableData();
-            //拿到其中的contentIntent
-            PendingIntent pendingIntent = notify.contentIntent;
-            try{
-                //打开notification
-                pendingIntent.send();
-            }catch (Exception e){}
-        }
-	}
-
-	public void getWxSaleNumber(){
-		//打开微信
-		List<AccessibilityNodeInfo> nodeInfos = getRootInActiveWindow().findAccessibilityNodeInfosByText("￥");
-		int size = nodeInfos.size();
-		if (size == 0)
-			return;
-		if (size == 1) {			//card页面是清空状态
-			performGlobal(nodeInfos,0);
-			return;
-		}
-		if (size > 1) {			//card页面由多个支付card
-			performGlobal(nodeInfos,size-1);
-			return;
-		}
-	}
-
-	private void performGlobal(List<AccessibilityNodeInfo> nodeInfos,int index){
-		String moneyStr = nodeInfos.get(index).getText().toString();
-//		Utils.LogUtil("d", TAG, moneyStr);
-		Utils.ToastUtil(context,"wx:"+moneyStr);
-		performGlobalAction(GLOBAL_ACTION_BACK);
 	}
 
 	@Override
@@ -300,6 +235,11 @@ public class LedAccessibilityService extends AccessibilityService implements OnL
             @Override
             public void afterTextChanged(Editable s) {}
         });
+	}
+
+	public interface OnDiffAppAccEventListener {
+
+		void setAccessibilityEvent(int eventType, AccessibilityEvent event);
 	}
 
 }

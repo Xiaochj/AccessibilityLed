@@ -35,7 +35,9 @@ public class Utils {
         }
     }
 
-    //log日志
+    /**
+     * log日志
+     */
     public static void LogUtil(String logType,String tag,String str){
         if(logType.equalsIgnoreCase("v")){
 
@@ -48,12 +50,16 @@ public class Utils {
         }
     }
 
-    //toast提示
+    /**
+     * toast提示
+     */
     public static void ToastUtil(Context ctx, String text){
         Toast.makeText(ctx,text,Toast.LENGTH_LONG).show();
     }
 
-    //记录是否第一次打开app的状态
+    /**
+     * 记录是否第一次打开app的状态
+     */
     public static void setSpFirstApp(Context ctx,boolean isFirst){
         SharedPreferences sp = ctx.getSharedPreferences(LedApplication.SP_APP,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
@@ -66,7 +72,10 @@ public class Utils {
         return sp.getBoolean("firstApp",true);
     }//end
 
-    //保存led的蓝牙地址
+
+    /**
+     * 保存led的蓝牙地址
+     */
     public static void setSpMacAddr(Context ctx,String macAddr){
         SharedPreferences sp = ctx.getSharedPreferences(LedApplication.SP_APP,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();

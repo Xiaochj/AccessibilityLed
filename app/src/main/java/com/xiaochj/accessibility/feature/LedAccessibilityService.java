@@ -95,6 +95,7 @@ public class LedAccessibilityService extends AccessibilityService implements OnL
 				if (notifyStr.contains(getString(R.string.notify_wx))){
 					notifyChanged(event);
 				}else if(notifyStr.contains(getString(R.string.notify_zfb))){
+					//字符串截取,中间的金额部分
 					String[] moneyStrList1 = notifyStr.split(getString(R.string.kuan_zfb));
 					String[] moneyStrList2 = moneyStrList1[1].split(getString(R.string.yuan_zfb));
 					String moneyStr = moneyStrList2[0];
@@ -209,6 +210,7 @@ public class LedAccessibilityService extends AccessibilityService implements OnL
 	}
 
 	private void initDialogAndEditInDialog() {
+		etList.clear();
 		View etView = LayoutInflater.from(context).inflate(R.layout.edit_addr_layout,null);
 		etView.findViewById(R.id.six).findViewById(R.id.colon).setVisibility(View.GONE);
 		final EditText et1 = (EditText)etView.findViewById(R.id.one).findViewById(R.id.edit);

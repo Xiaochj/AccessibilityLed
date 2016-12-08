@@ -17,7 +17,6 @@
     <string name="notify_wx">微信支付: 面对面收款到账通知</string>
     <string name="package_wx">com.tencent.mm</string>
     <string name="sale_wx">收款金额</string>
-    <string name="contentdescription_wx">当前所在页面,与微信支付的聊天</string>
 
     <string name="notify_zfb">通过扫码向你付款</string>
     <string name="package_zfb">com.eg.android.AlipayGphone</string>

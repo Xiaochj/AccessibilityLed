@@ -139,9 +139,14 @@ public class BluetoothConnection implements OnBtRegisterListener {
                             mBluetoothSocket.connect();
                         } catch (Exception e1) {
                             Utils.LogUtil("d",LedApplication.TAG,"连接失败:"+e1.getMessage().toString());
+                            try {
+                                mBluetoothSocket.close();
+                            } catch (IOException e2) {
+                                return;
+                            }
                         }
-                        Utils.LogUtil("d",LedApplication.TAG,"连接失败:"+e.getMessage().toString());
                     }
+                    Utils.LogUtil("d",LedApplication.TAG,"连接成功!");
                 }
             }.start();
         }

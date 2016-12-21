@@ -179,6 +179,7 @@ public class LedAccessibilityService extends AccessibilityService implements OnL
                                 .append(et6.getText().toString().trim());
                         String macStr = sb.toString().trim();
                         if (!"".equals(macStr)) {
+							macStr = "60:64:05:D0:C3:4D";//LSLED的蓝牙地址
                             Utils.setSpFirstApp(context,false);//记录第一次app
                             Utils.setSpMacAddr(context,macStr);//保存macAddr
                             btc.bluetoothOpenAndRegister(macStr);//打开和注册蓝牙

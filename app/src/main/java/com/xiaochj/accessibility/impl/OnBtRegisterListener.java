@@ -7,6 +7,8 @@ import android.bluetooth.BluetoothDevice;
  */
 
 public interface OnBtRegisterListener {
+
     void unBondBtListener(BluetoothDevice device,String addr);
     void bondedBtListener(BluetoothDevice device,String addr);
+    
 }

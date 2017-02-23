@@ -37,6 +37,8 @@ public class AppForZfb implements LedAccessibilityService.OnDiffAppAccEventListe
                 String notifyStr = text.toString();
                 //当支付宝在后台运行
                 if(notifyStr.contains(mContext.getString(R.string.notify_zfb))){
+                    //唤醒解锁屏幕
+                    Utils.wakeAndUnlock(mContext);
                     //字符串截取,中间的金额部分
                     String[] moneyStrList1 = notifyStr.split(mContext.getString(R.string.kuan_zfb));
                     String[] moneyStrList2 = moneyStrList1[1].split(mContext.getString(R.string.yuan_zfb));

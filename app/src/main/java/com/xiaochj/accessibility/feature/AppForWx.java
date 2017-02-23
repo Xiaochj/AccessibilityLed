@@ -12,8 +12,6 @@ import com.xiaochj.led.R;
 
 import java.util.List;
 
-import static android.accessibilityservice.AccessibilityService.GLOBAL_ACTION_BACK;
-
 /**
  * Created by xiaochj on 16/12/7.
  */
@@ -34,9 +32,12 @@ public class AppForWx implements LedAccessibilityService.OnDiffAppAccEventListen
             setNotifyChanged(event);
         } else if (eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {//调用窗口样式改变的event
             getWxSaleNumber();
-        } else if (eventType == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED) {//如果没退出微信,就一直调Action_Back返回事件
+        } /*else if (eventType == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED) {//如果没退出微信,就一直调Action_Back返回事件
             if (!event.getPackageName().toString().equalsIgnoreCase(mContext.getString(R.string.android_launcher)))
                 mService.performGlobalAction(GLOBAL_ACTION_BACK);
+        }*/
+        else if(eventType == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED){
+
         }
     }
 
@@ -74,8 +75,8 @@ public class AppForWx implements LedAccessibilityService.OnDiffAppAccEventListen
             performGlobal(nodeInfos,0);
             return;
         }
-        if (size > 1) {			//card页面由多个支付card
-            performGlobal(nodeInfos,size-1);
+        if (size > 1 && size % 2 == 0) {			//card页面由多个支付card
+            performGlobal(nodeInfos,size-2);
             return;
         }
     }
@@ -84,6 +85,6 @@ public class AppForWx implements LedAccessibilityService.OnDiffAppAccEventListen
         String moneyStr = nodeInfos.get(index).getText().toString();
 //		Utils.LogUtil("d", TAG, moneyStr);
         Utils.ToastUtil(mContext,"wx:"+moneyStr);
-        mService.performGlobalAction(GLOBAL_ACTION_BACK);
+//        mService.performGlobalAction(GLOBAL_ACTION_BACK);
     }
 }

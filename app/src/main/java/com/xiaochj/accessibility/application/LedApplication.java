@@ -9,4 +9,6 @@ import android.app.Application;
 public class LedApplication extends Application {
     public static final String TAG = "accessibilityservice";
     public static final String SP_APP = "AccssibilityLed";
+    public static final String SERVICE =
+            "com.xiaochj.led/com.xiaochj.accessibility.feature.LedAccessibilityService";
 }

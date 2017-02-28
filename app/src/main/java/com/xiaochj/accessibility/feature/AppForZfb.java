@@ -43,7 +43,9 @@ public class AppForZfb implements LedAccessibilityService.OnDiffAppAccEventListe
                     String[] moneyStrList1 = notifyStr.split(mContext.getString(R.string.kuan_zfb));
                     String[] moneyStrList2 = moneyStrList1[1].split(mContext.getString(R.string.yuan_zfb));
                     String moneyStr = moneyStrList2[0];
-                    Utils.ToastUtil(mContext,"zfb:"+moneyStr);
+//                    Utils.ToastUtil(mContext,"zfb:"+moneyStr);
+                    Utils.ToastForCustomTime(mContext,"zfb:"+moneyStr,10*1000);
+
                 }
             }
         }

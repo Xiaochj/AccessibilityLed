@@ -5,10 +5,18 @@ import android.content.Context;
 import android.os.PowerManager;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.xiaochj.accessibility.application.LedApplication;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by xiaochj on 16/11/5.
@@ -56,6 +64,47 @@ public class Utils {
      */
     public static void ToastUtil(Context ctx, String text){
         Toast.makeText(ctx,text,Toast.LENGTH_LONG).show();
+    }
+
+    /**
+     * 自定义样式的toast且自定义时间
+     * @param ctx
+     * @param text
+     * @param time
+     */
+    public static void ToastForCustomTime(Context ctx, String text, final int time){
+        final Toast toast = Toast.makeText(ctx,text,Toast.LENGTH_LONG);
+        TextView tv = new TextView(ctx);
+        // Get the screen size with unit pixels.
+        WindowManager wm = (WindowManager)ctx.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(outMetrics);
+        WindowManager.LayoutParams vlp = new WindowManager.LayoutParams(outMetrics.widthPixels,
+                outMetrics.heightPixels);
+        vlp.horizontalMargin = 0;
+        vlp.verticalMargin = 0;
+        tv.setLayoutParams(vlp);
+        tv.setTextSize(100);
+        tv.setBackgroundColor(ctx.getResources().getColor(android.R.color.white));
+        tv.setTextColor(ctx.getResources().getColor(android.R.color.black));
+        tv.setText(text);
+        toast.setView(tv);
+        final Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                toast.show();
+            }
+        }, 0, 3000);
+        toast.setGravity(Gravity.CENTER,0,0);
+        toast.show();
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                toast.cancel();
+                timer.cancel();
+            }
+        },time);
     }
 
     /**

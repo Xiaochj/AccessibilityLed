@@ -1,6 +1,7 @@
 package com.xiaochj.accessibility;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -23,6 +24,7 @@ public class MainActivity extends Activity {
         LinearLayout ll = new LinearLayout(this);
         ll.setLayoutParams(new ViewGroup.LayoutParams(-1,-1));
         b = new Switch(this);
+        b.setText("辅助功能");
         ll.addView(b);
         setContentView(ll);
     }

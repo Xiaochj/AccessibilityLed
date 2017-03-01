@@ -8,8 +8,10 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -75,7 +77,10 @@ public class Utils {
      */
     public static void ToastForCustomTime(Context ctx, String text, final int time){
         final Toast toast = Toast.makeText(ctx,text,Toast.LENGTH_LONG);
+        LinearLayout rl = new LinearLayout(ctx);
+        rl.setOrientation(LinearLayout.VERTICAL);
         TextView tv = new TextView(ctx);
+        Button button = new Button(ctx);
         // Get the screen size with unit pixels.
         WindowManager wm = (WindowManager)ctx.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
@@ -84,12 +89,15 @@ public class Utils {
                 outMetrics.heightPixels);
         vlp.horizontalMargin = 0;
         vlp.verticalMargin = 0;
-        tv.setLayoutParams(vlp);
+        rl.setLayoutParams(vlp);
+        rl.addView(tv);
         tv.setTextSize(100);
         tv.setBackgroundColor(ctx.getResources().getColor(android.R.color.white));
         tv.setTextColor(ctx.getResources().getColor(android.R.color.black));
         tv.setText(text);
-        toast.setView(tv);
+        rl.addView(button);
+        button.setText("掉我关闭");
+        toast.setView(rl);
         final Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -107,6 +115,18 @@ public class Utils {
                 timer.cancel();
             }
         },time);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        toast.cancel();
+                        timer.cancel();
+                    }
+                },0);
+            }
+        });
     }
 
     /**

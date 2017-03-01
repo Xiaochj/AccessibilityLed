@@ -28,20 +28,32 @@ public class Utils {
      * 监听屏幕唤醒和屏幕锁
      */
     public static void wakeAndUnlock(Context context){
-        PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-        KeyguardManager km = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
-        boolean isKeyguardflag = km.isKeyguardLocked();
-        boolean isPowerflag = pm.isScreenOn();
-        //如果屏幕灭了,就唤醒,否则不动
-        if(!isPowerflag){
-            PowerManager.WakeLock pl = pm.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "bright");
-            pl.acquire();
-        }
-        //如果锁屏就解锁,否则不动
-        if (isKeyguardflag) {
+//        PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+//        KeyguardManager km = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
+//        KeyguardManager.KeyguardLock kl = km.newKeyguardLock("unLock");
+//        boolean isKeyguardflag = km.isKeyguardLocked();
+//        boolean isPowerflag = pm.isScreenOn();
+//        //如果屏幕灭了,就唤醒,否则不动
+//        if(!isPowerflag){
+//            PowerManager.WakeLock pl = pm.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "bright");
+//            pl.acquire();
+//        }
+//        //如果锁屏就解锁,否则不动
+//        if (isKeyguardflag) {
+//            kl.disableKeyguard();
+//        }
+            KeyguardManager km= (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
             KeyguardManager.KeyguardLock kl = km.newKeyguardLock("unLock");
+            //解锁
             kl.disableKeyguard();
-        }
+            //获取电源管理器对象
+            PowerManager pm=(PowerManager) context.getSystemService(Context.POWER_SERVICE);
+            //获取PowerManager.WakeLock对象,后面的参数|表示同时传入两个值,最后的是LogCat里用的Tag
+            PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.SCREEN_DIM_WAKE_LOCK,"bright");
+            //点亮屏幕
+            wl.acquire();
+            //释放
+            wl.release();
     }
 
     /**
@@ -96,7 +108,8 @@ public class Utils {
                 toast.show();
             }
         }, 0, 3000);
-        toast.setGravity(Gravity.CENTER,0,0);
+        //全屏显示
+        toast.setGravity(Gravity.FILL,0,0);
         toast.show();
         new Timer().schedule(new TimerTask() {
             @Override

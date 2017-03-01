@@ -16,8 +16,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+
+    sourceSets{
+        main{
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 dependencies {
     compile 'com.android.support:support-v4:24.0.0'
+    compile files('libs/Msc.jar')
 }

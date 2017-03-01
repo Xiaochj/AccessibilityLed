@@ -7,6 +7,7 @@ import android.content.Context;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
+import com.xiaochj.accessibility.util.TtsUtils;
 import com.xiaochj.accessibility.util.Utils;
 import com.xiaochj.led.R;
 
@@ -74,7 +75,7 @@ public class AppForWx implements LedAccessibilityService.OnDiffAppAccEventListen
             performGlobal(nodeInfos,0);
             return;
         }
-        if (size > 1 && size % 2 == 0) {			//card页面由多个支付card
+        if (size > 1 && size % 2 == 0) {			//card页面有多个支付card
             performGlobal(nodeInfos,size-2);
             return;
         }
@@ -84,7 +85,10 @@ public class AppForWx implements LedAccessibilityService.OnDiffAppAccEventListen
         String moneyStr = nodeInfos.get(index).getText().toString();
 //		Utils.LogUtil("d", TAG, moneyStr);
 //        Utils.ToastUtil(mContext,"wx:"+moneyStr);
+        //显示金额
         Utils.ToastForCustomTime(mContext,"wx:"+moneyStr,10000);
+        //读取金额
+        TtsUtils.getInstance(mContext).ttsSales("微信到账"+moneyStr+"元");
         mService.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
     }
 }

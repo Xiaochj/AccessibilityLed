@@ -5,6 +5,7 @@
     <dimen name="ds5">5dp</dimen>
     <dimen name="ds10">10dp</dimen>
     <dimen name="ds20">20dp</dimen>
+    <dimen name="ds35">35dp</dimen>
     <dimen name="ds40">40dp</dimen>
     <dimen name="ds50">50dp</dimen>
     <dimen name="ds100">100dp</dimen>

@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
+    compileSdkVersion 24
     buildToolsVersion "24.0.2"
 
     defaultConfig {
@@ -25,6 +25,10 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:24.0.0'
+
     compile files('libs/Msc.jar')
+
+    compile 'com.android.support:support-v4:24.0.0'
+    //switch开关
+    compile 'com.kyleduo.switchbutton:library:1.4.5'
 }

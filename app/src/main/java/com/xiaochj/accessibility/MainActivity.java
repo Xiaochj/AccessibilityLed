@@ -5,28 +5,29 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.v7.widget.SwitchCompat;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import android.widget.LinearLayout;
-import android.widget.Switch;
 
+import com.kyleduo.switchbutton.SwitchButton;
 import com.xiaochj.accessibility.application.LedApplication;
 import com.xiaochj.accessibility.util.Utils;
+import com.xiaochj.led.R;
 
 public class MainActivity extends Activity {
 
-    Switch b = null;
+    SwitchButton b;
     boolean isOn = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LinearLayout ll = new LinearLayout(this);
-        ll.setLayoutParams(new ViewGroup.LayoutParams(-1,-1));
-        b = new Switch(this);
-        b.setText("辅助功能");
-        ll.addView(b);
-        setContentView(ll);
+        initView();
+    }
+
+    private void initView(){
+        setContentView(R.layout.main_layout);
+        b = (SwitchButton) findViewById(R.id.main_switch);
     }
 
     @Override

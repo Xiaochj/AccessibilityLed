@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ds20"
+        android:layout_marginBottom="@dimen/ds10"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:text="@string/toast_tip" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ds0.5"
+        android:background="@android:color/black"
+        android:layout_marginLeft="@dimen/ds40"
+        android:layout_marginRight="@dimen/ds40">
+    </View>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ds35"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:text="@string/main_tips"/>
+
+    <com.kyleduo.switchbutton.SwitchButton
+        android:id="@+id/main_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:kswThumbWidth="@dimen/ds50"
+        app:kswThumbHeight="@dimen/ds50" />
+
+</LinearLayout>

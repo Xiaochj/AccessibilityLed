@@ -89,11 +89,11 @@ public class Utils {
         switch (name){
             case 0:
                 nameTv.setText(R.string.weixin);
-                nameTv.setCompoundDrawables(null,null,ctx.getResources().getDrawable(R.drawable.weixin),null);
+                nameTv.setCompoundDrawablesRelativeWithIntrinsicBounds(null,null,ctx.getResources().getDrawable(R.drawable.weixin),null);
                 break;
             case 1:
                 nameTv.setText(R.string.zhifubao);
-                nameTv.setCompoundDrawables(null,null,ctx.getResources().getDrawable(R.drawable.zhifubao),null);
+                nameTv.setCompoundDrawablesRelativeWithIntrinsicBounds(null,null,ctx.getResources().getDrawable(R.drawable.zhifubao),null);
                 break;
         }
         nameTv.setCompoundDrawablePadding(10);

@@ -4,6 +4,7 @@ import android.accessibilityservice.AccessibilityService;
 import android.content.Context;
 import android.view.accessibility.AccessibilityEvent;
 
+import com.xiaochj.accessibility.application.LedApplication;
 import com.xiaochj.accessibility.util.Utils;
 import com.xiaochj.led.R;
 
@@ -45,7 +46,7 @@ public class AppForZfb implements LedAccessibilityService.OnDiffAppAccEventListe
                     String moneyStr = moneyStrList2[0];
 //                    Utils.ToastUtil(mContext,"zfb:"+moneyStr);
                     //显示金额
-                    Utils.ToastForCustomTime(mContext,"zfb:"+moneyStr,10*1000);
+                    Utils.ToastForCustomTime(mContext, LedApplication.ZHIFUBAO,""+moneyStr,10*1000);
 
                 }
             }

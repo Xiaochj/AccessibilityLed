@@ -8,11 +8,6 @@
         \n\n4、请关闭手机的系统锁屏。
         \n\n5、开启后,系统会弹出例行的警告。LedDemo郑重承诺不会通过此服务收集任何用户隐私,请放心使用。</string>
     <string name="android_launcher">android.intent.category.launcher</string>
-    
-    <string name="bluetooth_not_support">抱歉,您的手机不支持蓝牙功能</string>
-    <string name="bluetooth_tip">请输入显示器的蓝牙地址:</string>
-    <string name="bluetooth_ok">确定</string>
-    <string name="bluetooth_true_address">请输入正确的蓝牙地址</string>
 
     <string name="notify_wx">微信支付: 面对面收款到账通知</string>
     <string name="package_wx">com.tencent.mm</string>
@@ -22,4 +17,9 @@
     <string name="package_zfb">com.eg.android.AlipayGphone</string>
     <string name="kuan_zfb">款</string>
     <string name="yuan_zfb">元</string>
+
+    <string name="toast_tip">小喇叭收款提醒</string>
+    <string name="toast_close">关闭通知</string>
+    <string name="weixin">微信</string>
+    <string name="zhifubao">支付宝</string>
 </resources>

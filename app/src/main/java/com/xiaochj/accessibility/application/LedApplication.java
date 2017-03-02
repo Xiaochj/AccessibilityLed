@@ -17,6 +17,9 @@ public class LedApplication extends Application {
     public static final String SERVICE =
             "com.xiaochj.led/com.xiaochj.accessibility.feature.LedAccessibilityService";
 
+    public static final int WEIXIN = 0;
+    public static final int ZHIFUBAO = 1;
+
     @Override
     public void onCreate() {
         super.onCreate();

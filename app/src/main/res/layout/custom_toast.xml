@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ds20"
+        android:layout_marginBottom="@dimen/ds10"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:text="@string/toast_tip" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ds0.5"
+        android:background="@android:color/black"
+        android:layout_marginLeft="@dimen/ds40"
+        android:layout_marginRight="@dimen/ds40">
+    </View>
+
+    <TextView
+        android:id="@+id/toast_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableRight="@drawable/weixin"
+        android:drawablePadding="@dimen/ds10"
+        android:text="weixin"
+        android:gravity="center"
+        android:textSize="40sp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="@dimen/ds50"/>
+
+    <TextView
+        android:id="@+id/toast_sale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¥99999.99"
+        android:textSize="50sp"
+        android:layout_marginTop="@dimen/ds20"
+        android:textColor="@android:color/holo_red_dark"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/yuan_zfb"
+        android:textSize="40sp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="@dimen/ds20" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_horizontal">
+            <Button
+                android:id="@+id/toast_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/toast_close"
+                android:background="@drawable/button_style"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/ds20"/>
+    </RelativeLayout>
+
+</LinearLayout>

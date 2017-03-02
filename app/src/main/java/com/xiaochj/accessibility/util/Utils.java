@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -16,6 +17,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.xiaochj.accessibility.application.LedApplication;
+import com.xiaochj.led.R;
+
+import org.w3c.dom.Text;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -72,32 +76,29 @@ public class Utils {
     /**
      * 自定义样式的toast且自定义时间
      * @param ctx
+     * @param name
      * @param text
      * @param time
      */
-    public static void ToastForCustomTime(Context ctx, String text, final int time){
+    public static void ToastForCustomTime(Context ctx, int name, String text, final int time){
         final Toast toast = Toast.makeText(ctx,text,Toast.LENGTH_LONG);
-        LinearLayout rl = new LinearLayout(ctx);
-        rl.setOrientation(LinearLayout.VERTICAL);
-        TextView tv = new TextView(ctx);
-        Button button = new Button(ctx);
-        // Get the screen size with unit pixels.
-        WindowManager wm = (WindowManager)ctx.getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics outMetrics = new DisplayMetrics();
-        wm.getDefaultDisplay().getMetrics(outMetrics);
-        WindowManager.LayoutParams vlp = new WindowManager.LayoutParams(outMetrics.widthPixels,
-                outMetrics.heightPixels);
-        vlp.horizontalMargin = 0;
-        vlp.verticalMargin = 0;
-        rl.setLayoutParams(vlp);
-        rl.addView(tv);
-        tv.setTextSize(100);
-        tv.setBackgroundColor(ctx.getResources().getColor(android.R.color.white));
-        tv.setTextColor(ctx.getResources().getColor(android.R.color.black));
+        View view = LayoutInflater.from(ctx).inflate(R.layout.custom_toast,null,false);
+        TextView nameTv = (TextView)view.findViewById(R.id.toast_name);
+        TextView tv = (TextView)view.findViewById(R.id.toast_sale);
+        Button button = (Button)view.findViewById(R.id.toast_btn);
+        switch (name){
+            case 0:
+                nameTv.setText(R.string.weixin);
+                nameTv.setCompoundDrawables(null,null,ctx.getResources().getDrawable(R.drawable.weixin),null);
+                break;
+            case 1:
+                nameTv.setText(R.string.zhifubao);
+                nameTv.setCompoundDrawables(null,null,ctx.getResources().getDrawable(R.drawable.zhifubao),null);
+                break;
+        }
+        nameTv.setCompoundDrawablePadding(10);
         tv.setText(text);
-        rl.addView(button);
-        button.setText("掉我关闭");
-        toast.setView(rl);
+        toast.setView(view);
         final Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override

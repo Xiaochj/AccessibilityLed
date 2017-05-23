@@ -10,10 +10,25 @@ android {
         targetSdkVersion 24
     }
 
-    buildTypes {
+    signingConfigs {
         release {
+            storeFile file("led.jks")
+            storePassword "ledandroid"
+            keyAlias "led"
+            keyPassword "ledandroid"
+        }
+    }
+
+    buildTypes {
+        debug {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.release
+        }
+        release {
+            minifyEnabled true
+            proguardFiles 'proguard-rules.pro'
+            //签名设置 没有会出现Error: The apk for your currently selected variant(app-release-unsigned.apk) is not signed. please specify a signing configuration for this variant(release)
+            signingConfig signingConfigs.release
         }
     }
 
